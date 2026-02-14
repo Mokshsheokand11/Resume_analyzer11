@@ -1,20 +1,23 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# AI Resume Analyzer
 
-# Run and deploy your AI Studio app
+An AI-powered Resume Analyzer that evaluates resumes based on job descriptions and provides actionable improvement suggestions.
 
-This contains everything you need to run your app locally.
+## 🚀 Features
+- Upload Resume (PDF/Text)
+- Paste Job Description
+- Skill Match Analysis
+- Improvement Suggestions
+- ATS Optimization Tips
 
-View your app in AI Studio: https://ai.studio/apps/drive/1v7i2kAPmIBywyoTjlE5y4d4nsBwFwGwF
+## 🛠 Tech Stack
+- React + TypeScript
+- Vite
+- Node.js (if backend used)
+- AI API Integration
 
-## Run Locally
+## 📌 How to Run Locally
 
-**Prerequisites:**  Node.js
+```bash
+npm install
+npm run dev
 
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
