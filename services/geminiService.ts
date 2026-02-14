@@ -3,7 +3,13 @@ import { GoogleGenAI, Type } from "@google/genai";
 import { AnalysisResult, JobDetails } from "../types";
 
 // Always initialize with the current API Key from environment
-const getAIClient = () => new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+const getAIClient = () => {
+  const apiKey = process.env.API_KEY;
+  if (!apiKey || apiKey === 'PLACEHOLDER_API_KEY') {
+    throw new Error("Please set your Gemini API key in .env.local (currently using placeholder)");
+  }
+  return new GoogleGenAI({ apiKey });
+};
 
 export const analyzeResume = async (
   resumeDataBase64: string,
@@ -11,7 +17,7 @@ export const analyzeResume = async (
   jobDetails: JobDetails
 ): Promise<AnalysisResult> => {
   const ai = getAIClient();
-  const modelName = "gemini-3-flash-preview"; 
+  const modelName = "gemini-3-flash-preview";
 
   // Robust system prompt to ensure valid JSON and high-quality analysis
   const prompt = `
@@ -103,18 +109,18 @@ export const analyzeResume = async (
 
     const text = response.text;
     if (!text) throw new Error("Empty response from AI.");
-    
+
     return JSON.parse(text) as AnalysisResult;
   } catch (error: any) {
     console.error("Gemini API Error:", error);
-    
+
     // Generic error handling without artificial mentions of AI limits
     if (error.message?.includes("400") || error.message?.includes("INVALID_ARGUMENT") || error.message?.toLowerCase().includes("too large")) {
       throw new Error(
-        "The document could not be processed. Ensure the file is a valid PDF or clear image under 100MB."
+        "The document could not be processed. Ensure the file is a valid PDF or clear image under 10MB."
       );
     }
-    
+
     throw new Error(error.message || "Failed to analyze document.");
   }
 };

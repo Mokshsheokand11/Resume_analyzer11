@@ -19,12 +19,12 @@ const App: React.FC = () => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      // Updated limit to 100MB
-      if (file.size > 100 * 1024 * 1024) {
-        setError("File size exceeds 100MB limit.");
+      // Updated limit to 10MB
+      if (file.size > 10 * 1024 * 1024) {
+        setError("File size exceeds 10MB limit.");
         return;
       }
-      
+
       const allowedTypes = ['application/pdf', 'image/png', 'image/jpeg', 'image/webp'];
       if (!allowedTypes.includes(file.type)) {
         setError("Please upload a PDF or an image file.");
@@ -56,10 +56,10 @@ const App: React.FC = () => {
     try {
       const match = resumePreview.match(/^data:([^;]+);base64,(.+)$/);
       if (!match) throw new Error("Invalid file content format.");
-      
+
       const mimeType = match[1];
       const base64Data = match[2];
-      
+
       const result = await analyzeResume(base64Data, mimeType, jobDetails);
       setAnalysisResult(result);
     } catch (err: any) {
@@ -115,7 +115,7 @@ const App: React.FC = () => {
                     ) : (
                       <div className="space-y-2">
                         <p className="text-slate-600 font-bold">Select Resume (PDF or Image)</p>
-                        <p className="text-slate-400 text-xs">Max size: 100MB</p>
+                        <p className="text-slate-400 text-xs">Max size: 10MB</p>
                       </div>
                     )}
                   </div>
