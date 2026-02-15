@@ -4,7 +4,7 @@ import { AnalysisResult, JobDetails } from "../types";
 
 // Always initialize with the current API Key from environment
 const getAIClient = () => {
-  const apiKey = process.env.API_KEY;
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
   if (!apiKey || apiKey === 'PLACEHOLDER_API_KEY') {
     throw new Error("Please set your Gemini API key in .env.local (currently using placeholder)");
   }
