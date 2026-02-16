@@ -12,7 +12,6 @@ An AI-powered Resume Analyzer that evaluates resumes based on job descriptions a
 ## 🛠 Tech Stack
 - React + TypeScript
 - Vite
-- Node.js (if backend used)
 - AI API Integration
 
 ## 📌 How to Run Locally
